@@ -71,7 +71,15 @@ export default function Home() {
   };
 
   const handleSelectGender = (gender: Gender) => {
-    setFilters((prev) => ({ ...prev, gender }));
+    setFilters((prev) => ({
+      ...prev,
+      gender,
+      category: "All",
+      ageGroups: [],
+      sizes: [],
+      colors: [],
+      searchQuery: "",
+    }));
     scrollToCatalog();
   };
 
@@ -91,27 +99,34 @@ export default function Home() {
         if (!matchesName && !matchesCat && !matchesDesc) return false;
       }
 
-      // 2. Category
-      if (filters.category !== "All" && product.category !== filters.category) {
-        return false;
+      // 2. Category (supports single category or multiple categories)
+      if (filters.category !== "All") {
+        const matchesCat =
+          product.category === filters.category ||
+          (product.categories && product.categories.includes(filters.category));
+        if (!matchesCat) return false;
       }
 
-      // 3. Age Group
-      if (
-        filters.ageGroups.length > 0 &&
-        !filters.ageGroups.includes(product.ageGroup)
-      ) {
-        return false;
+      // 3. Age Group (supports single ageGroup or multiple ageGroups)
+      if (filters.ageGroups.length > 0) {
+        const matchesAge =
+          filters.ageGroups.includes(product.ageGroup) ||
+          (product.ageGroups && product.ageGroups.some((ag) => filters.ageGroups.includes(ag)));
+        if (!matchesAge) return false;
       }
 
-      // 4. Gender
+      // 4. Gender (Automatic cross-display: products configured for all genders display everywhere,
+      // and any item in 'Girls', 'Boys', or 'Gender Neutral' automatically displays when filter is 'All')
       if (filters.gender !== "All") {
-        if (filters.gender === "Gender Neutral") {
-          if (product.gender !== "Gender Neutral") return false;
-        } else if (
-          product.gender !== filters.gender &&
-          product.gender !== "Gender Neutral"
-        ) {
+        const isUniversalAll =
+          product.gender === "All" ||
+          (product.genders && product.genders.includes("All"));
+
+        const matchesSpecificGender =
+          product.gender === filters.gender ||
+          (product.genders && product.genders.includes(filters.gender));
+
+        if (!isUniversalAll && !matchesSpecificGender) {
           return false;
         }
       }
@@ -268,6 +283,7 @@ export default function Home() {
       {/* Quick View Modal */}
       <QuickViewModal
         product={quickViewProduct}
+        activeColor={filters.colors[0]}
         isOpen={!!quickViewProduct}
         onClose={() => setQuickViewProduct(null)}
         onOpenSizeGuide={() => {
@@ -311,3 +327,4 @@ export default function Home() {
     </div>
   );
 }
+

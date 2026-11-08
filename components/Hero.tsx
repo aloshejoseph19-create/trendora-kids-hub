@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, Sparkles, ShieldCheck, Heart, Star } from "lucide-react";
 import { AgeGroup, Category } from "@/types";
 
@@ -10,11 +10,54 @@ interface HeroProps {
   onSelectCategory: (category: Category) => void;
 }
 
+const HERO_SLIDES = [
+  {
+    image: "/hero/hero-1.jpg",
+    alt: "Streetwear hoodie and denim set for boys",
+    tag: "Trending Streetwear",
+    title: "Oversized Vintage Car Pullover",
+    price: "$38.00",
+  },
+  {
+    image: "/hero/hero-2.jpg",
+    alt: "Striped sunset cardigan and denim shorts for girls",
+    tag: "Summer Knits",
+    title: "Striped Sunset Button Cardigan",
+    price: "$34.00",
+  },
+  {
+    image: "/hero/hero-3.jpg",
+    alt: "Classic blue plaid flannel shirt and beanie",
+    tag: "Everyday Classics",
+    title: "Heritage Check Flannel Shirt",
+    price: "$32.00",
+  },
+  {
+    image: "/hero/hero-4.jpg",
+    alt: "Joyful play vest and relaxed chinos outfit",
+    tag: "Playful Explorer",
+    title: "Adventure Utility Vest & Chinos",
+    price: "$42.00",
+  },
+];
+
 export const Hero: React.FC<HeroProps> = ({
   onShopNowClick,
   onSelectAgeGroup,
   onSelectCategory,
 }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // 2-second automatic slideshow timeline
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-surface-subtle via-white to-white pt-8 pb-14 sm:pt-12 sm:pb-20">
       {/* Subtle organic decorative background circles (minimalist, low opacity) */}
@@ -121,22 +164,63 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Right Column: Dynamic Visual Showcase with Micro-interactions */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Main Lifestyle Image Card */}
-              <div className="relative z-10 rounded-3xl overflow-hidden bg-white shadow-2xl border-4 border-white aspect-[4/5] sm:aspect-[3/4]">
-                <img
-                  src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=1000&q=85"
-                  alt="Happy toddler in organic sunbeam cotton dress playing outdoors"
-                  className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
+              {/* Main Lifestyle Image Card Slideshow (2s timeline) */}
+              <div
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                className="relative z-10 rounded-3xl overflow-hidden bg-white shadow-2xl border-4 border-white aspect-[4/5] sm:aspect-[3/4] group"
+              >
+                {/* Images Layer */}
+                {HERO_SLIDES.map((slide, index) => {
+                  const isActive = index === currentSlide;
+                  return (
+                    <div
+                      key={index}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                        isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                      }`}
+                    >
+                      <img
+                        src={slide.image}
+                        alt={slide.alt}
+                        className={`w-full h-full object-cover object-top transition-transform duration-700 ease-out ${
+                          isActive ? "scale-100" : "scale-105"
+                        }`}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  );
+                })}
 
                 {/* Floating On-Image Tag */}
-                <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-white backdrop-blur-md bg-white/20 p-3 rounded-2xl border border-white/30">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-slate-100 font-semibold">Featured Dress</p>
-                    <p className="font-heading font-bold text-sm text-white">Sunbeam Tiered Meadow Dress</p>
+                <div className="absolute bottom-5 left-5 right-5 z-20 flex items-center justify-between text-white backdrop-blur-md bg-white/20 p-3 rounded-2xl border border-white/30 transition-all duration-300">
+                  <div className="min-w-0 pr-2">
+                    <p className="text-[10px] uppercase tracking-wider text-slate-100 font-bold truncate">
+                      {HERO_SLIDES[currentSlide].tag}
+                    </p>
+                    <p className="font-heading font-bold text-sm text-white truncate">
+                      {HERO_SLIDES[currentSlide].title}
+                    </p>
                   </div>
-                  <span className="font-bold text-brand-yellow text-base">$36.00</span>
+                  <span className="font-bold text-brand-yellow text-base flex-shrink-0">
+                    {HERO_SLIDES[currentSlide].price}
+                  </span>
+                </div>
+
+                {/* Slideshow Progress / Pagination Dots */}
+                <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 bg-black/35 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20">
+                  {HERO_SLIDES.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        index === currentSlide
+                          ? "w-6 bg-brand-yellow shadow-xs"
+                          : "w-1.5 bg-white/60 hover:bg-white"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
 
@@ -168,3 +252,4 @@ export const Hero: React.FC<HeroProps> = ({
     </section>
   );
 };
+

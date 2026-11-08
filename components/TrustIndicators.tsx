@@ -63,3 +63,4 @@ export const TrustIndicators: React.FC = () => {
     </section>
   );
 };
+

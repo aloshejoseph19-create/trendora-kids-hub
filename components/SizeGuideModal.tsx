@@ -208,3 +208,4 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
     </div>
   );
 };
+

@@ -8,14 +8,18 @@ export interface ColorSwatch {
   name: string;
   hex: string;
   tailwindClass: string;
+  image?: string;
 }
 
 export interface Product {
   id: string;
   name: string;
   category: "Dresses & Outfits" | "Toys & Games" | "Accessories" | "Everyday Basics";
+  categories?: Category[];
   ageGroup: AgeGroup;
+  ageGroups?: AgeGroup[];
   gender: Gender;
+  genders?: Gender[];
   price: number;
   originalPrice?: number;
   rating: number;
@@ -49,3 +53,4 @@ export interface CartItem {
   selectedSize: string;
   quantity: number;
 }
+

@@ -154,7 +154,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       {/* 3. Gender Filter */}
       <div className="space-y-3 pt-2 border-t border-slate-100">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-          Collection
+          Shop by Gender
         </label>
         <div className="grid grid-cols-2 gap-1.5">
           {genderOptions.map((g) => {
@@ -162,14 +162,20 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
             return (
               <button
                 key={g}
-                onClick={() => onFilterChange({ ...filters, gender: g })}
+                onClick={() =>
+                  onFilterChange({
+                    ...filters,
+                    gender: g,
+                    category: filters.category === "Toys & Games" ? "All" : filters.category,
+                  })
+                }
                 className={`py-2 px-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
                   isSelected
-                    ? "bg-brand-coral border-brand-coral text-white shadow-2xs"
+                    ? "bg-brand-coral border-brand-coral text-white shadow-2xs font-extrabold"
                     : "bg-white border-slate-200/80 text-slate-700 hover:border-slate-300"
                 }`}
               >
-                {g}
+                {g === "Girls" ? "👧 Girls" : g === "Boys" ? "👦 Boys" : g}
               </button>
             );
           })}
@@ -288,3 +294,4 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
     </aside>
   );
 };
+

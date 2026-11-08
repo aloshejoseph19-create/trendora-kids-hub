@@ -187,6 +187,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
             <ProductCard
               key={product.id}
               product={product}
+              activeColors={filters.colors}
               onQuickView={onQuickView}
               onOpenSizeGuide={onOpenSizeGuide}
               isWishlisted={wishlist.includes(product.id)}
@@ -198,3 +199,4 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
     </section>
   );
 };
+

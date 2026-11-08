@@ -83,3 +83,4 @@ npm start
 │   └── index.ts            # TypeScript interfaces
 └── tailwind.config.js      # Custom theme, playful fonts & vibrant colors
 ```
+

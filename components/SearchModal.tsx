@@ -41,12 +41,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   const filtered = searchTerm.trim()
     ? PRODUCTS.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.sizes.some((s) => s.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
+      (p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.sizes.some((s) => s.toLowerCase().includes(searchTerm.toLowerCase()))
+    )
     : [];
 
   const quickPicks = ["Meadow Dress", "Rainbow Stacker", "Cotton Romper", "UV400 Sunnies", "Merino Beanie"];
@@ -186,3 +186,4 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     </div>
   );
 };
+

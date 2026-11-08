@@ -7,6 +7,7 @@ import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
   product: Product;
+  activeColors?: string[];
   onQuickView: (product: Product) => void;
   onOpenSizeGuide: () => void;
   isWishlisted: boolean;
@@ -15,6 +16,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
+  activeColors,
   onQuickView,
   onOpenSizeGuide,
   isWishlisted,
@@ -22,6 +24,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const { addToCart } = useCart();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+
+  // Automatically update selected color when user checks/filters a color
+  React.useEffect(() => {
+    if (activeColors && activeColors.length > 0) {
+      const matchIdx = product.colors.findIndex((c) => activeColors.includes(c.name));
+      if (matchIdx !== -1) {
+        setSelectedColorIndex(matchIdx);
+      }
+    }
+  }, [activeColors, product.colors]);
   const [isHovered, setIsHovered] = useState(false);
   const [addedAnimation, setAddedAnimation] = useState(false);
 
@@ -29,9 +41,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
+  const currentImage =
+    product.colors[selectedColorIndex]?.image ||
+    product.images[selectedColorIndex] ||
+    product.images[0];
+
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const color = product.colors[selectedColorIndex] || product.colors[0];
+    const color =
+      product.colors[selectedColorIndex] ||
+      product.colors[0] ||
+      { name: "Default", hex: "#000000", tailwindClass: "bg-black" };
     const size = product.sizes[0] || "One Size";
     addToCart(product, color, size, 1);
     setAddedAnimation(true);
@@ -47,7 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Top Image Area */}
       <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-surface-subtle mb-3.5">
         <img
-          src={product.images[0]}
+          src={currentImage}
           alt={product.name}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
@@ -89,13 +109,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           />
         </button>
 
-        {/* Quick View Button (Reveals smoothly on hover) */}
+        {/* Quick View Button — always visible on mobile; hover-reveal on desktop */}
         <div
           className={`absolute inset-x-3 bottom-3 z-10 transition-all duration-200 transform ${
             isHovered
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-2 pointer-events-none"
-          }`}
+          } max-md:opacity-100 max-md:translate-y-0 max-md:pointer-events-auto`}
         >
           <button
             onClick={() => onQuickView(product)}
@@ -144,25 +164,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Color Swatches preview */}
-        <div className="flex items-center gap-1.5 pt-1">
-          {product.colors.map((color, idx) => (
-            <button
-              key={color.name}
-              onClick={() => setSelectedColorIndex(idx)}
-              className={`w-3.5 h-3.5 rounded-full transition-transform ${
-                selectedColorIndex === idx
-                  ? "ring-2 ring-slate-800 ring-offset-1 scale-110"
-                  : "opacity-80 hover:opacity-100 hover:scale-105"
-              }`}
-              style={{ backgroundColor: color.hex }}
-              title={color.name}
-              aria-label={color.name}
-            />
-          ))}
-          <span className="text-[10px] text-slate-400 font-medium ml-1">
-            {product.colors[selectedColorIndex]?.name}
-          </span>
-        </div>
+        {product.colors.length > 1 && (
+          <div className="flex items-center gap-1.5 pt-1">
+            {product.colors.map((color, idx) => (
+              <button
+                key={color.name}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedColorIndex(idx);
+                }}
+                className={`w-3.5 h-3.5 rounded-full transition-transform ${
+                  selectedColorIndex === idx
+                    ? "ring-2 ring-slate-800 ring-offset-1 scale-110"
+                    : "opacity-80 hover:opacity-100 hover:scale-105"
+                }`}
+                style={{ backgroundColor: color.hex }}
+                title={color.name}
+                aria-label={color.name}
+              />
+            ))}
+            <span className="text-[10px] text-slate-400 font-medium ml-1">
+              {product.colors[selectedColorIndex]?.name}
+            </span>
+          </div>
+        )}
 
         {/* Price & Action Row */}
         <div className="pt-2 flex items-center justify-between border-t border-slate-100">
@@ -204,3 +229,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     </article>
   );
 };
+

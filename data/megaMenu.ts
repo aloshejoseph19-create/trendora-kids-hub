@@ -24,7 +24,7 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
     featured: {
       title: "Newborn Essentials",
       description: "Cloud-soft organic layers crafted for delicate first months.",
-      imageUrl: "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "/products/heirloom-baby-set.jpg",
       cta: "Explore 0-24M",
       badge: "Pure Cotton",
       color: "border-brand-mint text-brand-mint",
@@ -63,26 +63,52 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
     label: "Shop by Gender",
     href: "#",
     featured: {
-      title: "Playtime Mix & Match",
-      description: "Durable staples made for sibling hand-me-downs.",
-      imageUrl: "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=600&q=80",
-      cta: "Shop Gender-Neutral",
-      badge: "Staff Pick",
-      color: "border-brand-blue text-brand-blue",
+      title: "Denim Peter Pan Collar Dress",
+      description: "Classic embroidered Peter Pan collar crafted with soft organic chambray.",
+      imageUrl: "/products/sunbeam-tiered-dress.jpg",
+      cta: "Shop Girls Collection",
+      badge: "Trending in Girls",
+      color: "border-brand-coral text-brand-coral",
     },
     sections: [
       {
         title: "Girls Collection",
         items: [
+          { label: "Denim Peter Pan Collar Dress", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Butterfly Quilted Collar Dress", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Forest Gingham Pinafore Dress", href: "#", filterGender: "Girls", badge: "Trending" },
+          { label: "Mushroom Embroidered Pinafore Dress", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Heirloom Embroidered Pinafore Dress", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Tartan Eyelet Lace Bubble Dress", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Floral Peter Pan Ruffle Blouse", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Botanical Meadow Dress & Vest", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Watercolor Floral Flutter Dress", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Floral Bow Suspender Skirt Set", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Flutter Ruffle Top & Shorts Set", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Avocado Flutter Top & Bloomer Set", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Unicorn Ruffle Shortall Romper", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Ocean Friends Flutter Dress Set", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Sweet Treats & Bunny Shorts Set", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Youth Culture Washed Tee", href: "#", filterGender: "Girls", badge: "Trending" },
+          { label: "Modern Typo Texture Tee", href: "#", filterGender: "Girls", badge: "New" },
+          { label: "Organic Tank & Shorts Play Set", href: "#", filterGender: "Girls", badge: "Organic" },
           { label: "Floral & Twirl Dresses", href: "#", filterGender: "Girls" },
           { label: "Cardigans & Sweaters", href: "#", filterGender: "Girls" },
-          { label: "Leggings & Skirts", href: "#", filterGender: "Girls" },
           { label: "Hair Clips & Sunnies", href: "#", filterGender: "Girls" },
         ],
       },
       {
         title: "Boys Collection",
         items: [
+          { label: "Little Champ Chambray Romper", href: "#", filterGender: "Boys", badge: "New" },
+          { label: "Daddy's Boy Jogger Set", href: "#", filterGender: "Boys", badge: "New" },
+          { label: "Captain & Adventurer Suspender Set", href: "#", filterGender: "Boys", badge: "New" },
+          { label: "Denim Vest & Bow Tie Suit Set", href: "#", filterGender: "Boys", badge: "New" },
+          { label: "Little Gentleman Pinstripe Vest Set", href: "#", filterGender: "Boys", badge: "New" },
+          { label: "Car Henley & Dot Shorts Set", href: "#", filterGender: "Boys", badge: "New" },
+          { label: "Organic Tank & Shorts Play Set", href: "#", filterGender: "Boys", badge: "Organic" },
+          { label: "Youth Culture Graphic Tee", href: "#", filterGender: "Boys", badge: "Trending" },
+          { label: "Modern Typo Texture Tee", href: "#", filterGender: "Boys", badge: "New" },
           { label: "Graphic Tees & Henleys", href: "#", filterGender: "Boys" },
           { label: "Corduroy Dungarees", href: "#", filterGender: "Boys" },
           { label: "Outdoor Jackets", href: "#", filterGender: "Boys" },
@@ -92,6 +118,9 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
       {
         title: "Gender Neutral",
         items: [
+          { label: "Organic Tank & Shorts Play Set", href: "#", filterGender: "Gender Neutral", badge: "Organic" },
+          { label: "Youth Culture Streetwear Tee", href: "#", filterGender: "Gender Neutral", badge: "Trending" },
+          { label: "Modern Typo Texture Tee", href: "#", filterGender: "Gender Neutral", badge: "New" },
           { label: "Pure Organic Basics", href: "#", filterGender: "Gender Neutral", badge: "Eco" },
           { label: "Everyday Loungewear", href: "#", filterGender: "Gender Neutral" },
           { label: "Puddle Boots & Rainwear", href: "#", filterGender: "Gender Neutral" },
@@ -124,6 +153,7 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
       {
         title: "Plush & Comfort",
         items: [
+          { label: "Character Dolls & Plush Playsets", href: "#", filterCategory: "Toys & Games", badge: "New" },
           { label: "Organic Cuddle Bunnies", href: "#", filterCategory: "Toys & Games", badge: "Best Love" },
           { label: "Sherpa Sleep Companions", href: "#", filterCategory: "Toys & Games" },
           { label: "Sensory Soft Rattles", href: "#", filterCategory: "Toys & Games" },
@@ -132,6 +162,7 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
       {
         title: "Creative & Learning",
         items: [
+          { label: "Action Playsets & Learning Toys", href: "#", filterCategory: "Toys & Games", badge: "New" },
           { label: "Soy-Ink Coloring Books", href: "#", filterCategory: "Toys & Games" },
           { label: "STEM Construction Kits", href: "#", filterCategory: "Toys & Games" },
           { label: "Pretend Play Kitchen", href: "#", filterCategory: "Toys & Games" },
@@ -154,15 +185,15 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
       {
         title: "Headwear & Sun Care",
         items: [
-          { label: "Flexible UV400 Sunnies", href: "#", filterCategory: "Accessories" },
-          { label: "Chunky Pom-Pom Beanies", href: "#", filterCategory: "Accessories" },
+          { label: "Flower Blossom Rimless Sunnies", href: "#", filterCategory: "Accessories", badge: "New" },
+          { label: "Kids Novelty Character Caps", href: "#", filterCategory: "Accessories", badge: "New" },
           { label: "Wide-Brim Sun Hats", href: "#", filterCategory: "Accessories" },
         ],
       },
       {
         title: "Mealtime & Care",
         items: [
-          { label: "Silicone Suction Sets", href: "#", filterCategory: "Accessories", badge: "Must Have" },
+          { label: "Kids Digital & Learning Watches", href: "#", filterCategory: "Accessories", badge: "New" },
           { label: "Catch-All Bibs", href: "#", filterCategory: "Accessories" },
           { label: "Stainless Sippy Bottles", href: "#", filterCategory: "Accessories" },
         ],
@@ -170,9 +201,10 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
       {
         title: "Bags & Small Wonders",
         items: [
+          { label: "Floral & Plush Hairbands", href: "#", filterCategory: "Accessories", badge: "New" },
+          { label: "Embellished Summer Sandals", href: "#", filterCategory: "Accessories", badge: "New" },
+          { label: "Novelty Character Socks Multi-Pack", href: "#", filterCategory: "Accessories", badge: "New" },
           { label: "Mini Kid Backpacks", href: "#", filterCategory: "Accessories" },
-          { label: "Organic Cotton Hairbands", href: "#", filterCategory: "Accessories" },
-          { label: "Seamless Bamboo Socks", href: "#", filterCategory: "Accessories" },
         ],
       },
     ],
@@ -183,7 +215,7 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
     featured: {
       title: "Spring Clear-Out",
       description: "Up to 40% off past-season styles while supplies last.",
-      imageUrl: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=600&q=80",
+      imageUrl: "/products/sunbeam-tiered-dress.jpg",
       cta: "Shop All Deals",
       badge: "Up to 40% Off",
       color: "border-red-500 text-red-500",
@@ -201,10 +233,11 @@ export const MEGA_MENU_DATA: Record<string, MegaMenuItem> = {
         title: "Featured Deals",
         items: [
           { label: "Sunbeam Meadow Dress (-25%)", href: "#" },
-          { label: "Pom-Pom Merino Beanie (-25%)", href: "#" },
-          { label: "Suction Mealtime Set (-20%)", href: "#" },
+          { label: "Kids Novelty Character Caps (-25%)", href: "#" },
+          { label: "Kids Learning Watches (-25%)", href: "#" },
         ],
       },
     ],
   },
 };
+

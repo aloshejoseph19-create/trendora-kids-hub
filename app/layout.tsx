@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Trendora Kids Hub | Organic Childrenswear, Wooden Toys & Baby Essentials",
@@ -18,8 +19,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-white text-slate-900 antialiased selection:bg-brand-yellow/30 selection:text-slate-900">
         <CartProvider>
           {children}
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>
   );
 }
+

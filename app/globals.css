@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,6 +7,7 @@
 :root {
   --font-heading: 'Fredoka', 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-logo: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
@@ -20,6 +21,10 @@ body {
 h1, h2, h3, h4, .font-heading {
   font-family: var(--font-heading);
   letter-spacing: -0.01em;
+}
+
+.font-logo {
+  font-family: var(--font-logo);
 }
 
 /* Custom scrollbar */
@@ -56,3 +61,4 @@ h1, h2, h3, h4, .font-heading {
 .animate-soft-pulse {
   animation: softPulse 2s ease-in-out infinite;
 }
+

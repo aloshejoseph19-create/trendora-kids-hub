@@ -61,7 +61,7 @@ export const CartDrawer: React.FC = () => {
         className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-4 sm:pl-10">
         <aside aria-label="Shopping Bag" className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
           {/* Drawer Header */}
           <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-surface-subtle">
@@ -156,14 +156,18 @@ export const CartDrawer: React.FC = () => {
 
                     {/* Color & Size Specs */}
                     <div className="flex items-center gap-2 mt-1 text-xs text-slate-500">
-                      <span className="flex items-center gap-1 font-medium">
-                        <span
-                          className="w-2.5 h-2.5 rounded-full border border-slate-200"
-                          style={{ backgroundColor: item.selectedColor.hex }}
-                        />
-                        {item.selectedColor.name}
-                      </span>
-                      <span>•</span>
+                      {item.selectedColor?.name && item.selectedColor.name !== "Default" && (
+                        <>
+                          <span className="flex items-center gap-1 font-medium">
+                            <span
+                              className="w-2.5 h-2.5 rounded-full border border-slate-200"
+                              style={{ backgroundColor: item.selectedColor.hex }}
+                            />
+                            {item.selectedColor.name}
+                          </span>
+                          <span>•</span>
+                        </>
+                      )}
                       <span className="font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">
                         {item.selectedSize}
                       </span>
@@ -291,3 +295,4 @@ export const CartDrawer: React.FC = () => {
     </div>
   );
 };
+

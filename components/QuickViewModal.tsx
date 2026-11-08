@@ -11,12 +11,15 @@ import {
   Heart,
   Truck,
   Sparkles,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Product, ColorSwatch } from "@/types";
 import { useCart } from "@/context/CartContext";
 
 interface QuickViewModalProps {
   product: Product | null;
+  activeColor?: string;
   isOpen: boolean;
   onClose: () => void;
   onOpenSizeGuide: () => void;
@@ -26,6 +29,7 @@ interface QuickViewModalProps {
 
 export const QuickViewModal: React.FC<QuickViewModalProps> = ({
   product,
+  activeColor,
   isOpen,
   onClose,
   onOpenSizeGuide,
@@ -40,18 +44,45 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
   useEffect(() => {
     if (product) {
-      setSelectedColor(product.colors[0] || null);
+      const matchColor = activeColor
+        ? product.colors.find((c) => c.name === activeColor)
+        : null;
+      const initial = matchColor || product.colors[0] || null;
+      setSelectedColor(initial);
       setSelectedSize(product.sizes[0] || "");
       setQuantity(1);
-      setActiveImageIndex(0);
+      if (initial?.image) {
+        const imgIdx = product.images.indexOf(initial.image);
+        setActiveImageIndex(imgIdx !== -1 ? imgIdx : 0);
+      } else {
+        setActiveImageIndex(0);
+      }
     }
-  }, [product]);
+  }, [product, activeColor]);
+
+  // Keyboard navigation to browse images one-by-one with Arrow keys
+  useEffect(() => {
+    if (!isOpen || !product || product.images.length <= 1) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        setActiveImageIndex((prev) => (prev - 1 + product.images.length) % product.images.length);
+      } else if (e.key === "ArrowRight") {
+        setActiveImageIndex((prev) => (prev + 1) % product.images.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, product]);
 
   if (!isOpen || !product) return null;
 
   const handleAddToCart = () => {
-    if (selectedColor && selectedSize) {
-      addToCart(product, selectedColor, selectedSize, quantity);
+    const colorToUse =
+      selectedColor ||
+      product.colors[0] ||
+      { name: "Default", hex: "#000000", tailwindClass: "bg-black" };
+    if (selectedSize) {
+      addToCart(product, colorToUse, selectedSize, quantity);
       onClose();
     }
   };
@@ -73,21 +104,21 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
         </button>
 
         {/* Left: Product Images Gallery */}
-        <div className="w-full md:w-1/2 p-6 bg-surface-subtle flex flex-col justify-between">
-          <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-slate-200/60 mb-4 group">
+        <div className="w-full md:w-1/2 p-4 sm:p-6 bg-surface-subtle flex flex-col justify-between max-md:max-h-[45vh] max-md:overflow-y-auto">
+          <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-slate-200/60 mb-4 group select-none">
             <img
-              src={product.images[activeImageIndex] || product.images[0]}
-              alt={product.name}
+              src={product.images[activeImageIndex] || selectedColor?.image || product.images[0]}
+              alt={`${product.name} - view ${activeImageIndex + 1}`}
               className="w-full h-full object-cover object-center transition-all duration-300"
             />
             {product.badge && (
-              <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-coral text-white shadow-sm">
+              <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-coral text-white shadow-sm z-10">
                 {product.badge}
               </span>
             )}
             <button
               onClick={() => onToggleWishlist(product.id)}
-              className="absolute top-3 right-3 p-2.5 rounded-full bg-white/90 hover:bg-white shadow-sm text-slate-400 hover:text-brand-coral transition-colors"
+              className="absolute top-3 right-3 p-2.5 rounded-full bg-white/90 hover:bg-white shadow-sm text-slate-400 hover:text-brand-coral transition-colors z-10"
               aria-label="Wishlist item"
             >
               <Heart
@@ -96,20 +127,61 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 }`}
               />
             </button>
+
+            {/* Prev / Next Buttons to step through glasses one-by-one */}
+            {product.images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveImageIndex(
+                      (prev) => (prev - 1 + product.images.length) % product.images.length
+                    )
+                  }
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 hover:text-slate-900 shadow-md flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+                  aria-label="Previous glass"
+                  title="Previous image"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveImageIndex((prev) => (prev + 1) % product.images.length)
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 hover:text-slate-900 shadow-md flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+                  aria-label="Next glass"
+                  title="Next image"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Counter Badge */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-2.5 py-1 rounded-full bg-slate-900/75 text-white text-[11px] font-semibold tracking-wide backdrop-blur-xs flex items-center gap-1.5 shadow-sm">
+                  <span>{activeImageIndex + 1} / {product.images.length}</span>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Thumbnails */}
           {product.images.length > 1 && (
-            <div className="flex gap-2">
+            <div className="flex gap-2 overflow-x-auto pb-1.5 pt-0.5 no-scrollbar">
               {product.images.map((img, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveImageIndex(idx)}
-                  className={`w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${
+                  type="button"
+                  onClick={() => {
+                    setActiveImageIndex(idx);
+                    const matchingColor = product.colors.find((c) => c.image === img);
+                    if (matchingColor) setSelectedColor(matchingColor);
+                  }}
+                  className={`w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
                     activeImageIndex === idx
-                      ? "border-brand-coral scale-105 shadow-xs"
-                      : "border-slate-200 opacity-70 hover:opacity-100"
+                      ? "border-brand-coral scale-105 shadow-sm"
+                      : "border-slate-200 opacity-70 hover:opacity-100 hover:border-slate-300"
                   }`}
+                  aria-label={`View glass ${idx + 1}`}
                 >
                   <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
                 </button>
@@ -124,7 +196,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
         </div>
 
         {/* Right: Product Details & Purchase Form */}
-        <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto space-y-5">
+        <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-8 overflow-y-auto space-y-5">
           {/* Category & Age Group badge */}
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-2.5 py-1 rounded-full">
@@ -162,11 +234,10 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-3.5 h-3.5 ${
-                      i < Math.floor(product.rating)
+                    className={`w-3.5 h-3.5 ${i < Math.floor(product.rating)
                         ? "fill-amber-400 text-amber-400"
                         : "text-slate-200"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -178,40 +249,48 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
           <p className="text-sm text-slate-600 leading-relaxed">{product.description}</p>
 
           {/* Color Selector */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                Color:{" "}
-                <span className="text-slate-900 font-semibold">{selectedColor?.name}</span>
-              </label>
-            </div>
-            <div className="flex items-center gap-2.5">
-              {product.colors.map((color) => {
-                const isSelected = selectedColor?.name === color.name;
-                return (
-                  <button
-                    key={color.name}
-                    onClick={() => setSelectedColor(color)}
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                      isSelected
-                        ? "ring-2 ring-slate-900 ring-offset-2 scale-110"
-                        : "hover:scale-105 border border-slate-200"
-                    }`}
-                    style={{ backgroundColor: color.hex }}
-                    title={color.name}
-                  >
-                    {isSelected && (
-                      <Check
-                        className={`w-4 h-4 ${
-                          color.name === "Soft Cream" ? "text-slate-900" : "text-white"
+          {product.colors.length > 1 && (
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Color:{" "}
+                  <span className="text-slate-900 font-semibold">{selectedColor?.name}</span>
+                </label>
+              </div>
+              <div className="flex items-center gap-2.5">
+                {product.colors.map((color) => {
+                  const isSelected = selectedColor?.name === color.name;
+                  return (
+                    <button
+                      key={color.name}
+                      onClick={() => {
+                        setSelectedColor(color);
+                        if (color.image) {
+                          const imgIdx = product.images.indexOf(color.image);
+                          if (imgIdx !== -1) {
+                            setActiveImageIndex(imgIdx);
+                          }
+                        }
+                      }}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isSelected
+                          ? "ring-2 ring-slate-900 ring-offset-2 scale-110"
+                          : "hover:scale-105 border border-slate-200"
                         }`}
-                      />
-                    )}
-                  </button>
-                );
-              })}
+                      style={{ backgroundColor: color.hex }}
+                      title={color.name}
+                    >
+                      {isSelected && (
+                        <Check
+                          className={`w-4 h-4 ${color.name === "Soft Cream" ? "text-slate-900" : "text-white"
+                            }`}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Size Selector + Size Guide Link */}
           <div>
@@ -227,18 +306,17 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 Visual Sizing Guide
               </button>
             </div>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
               {product.sizes.map((size) => {
                 const isSelected = selectedSize === size;
                 return (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`py-2 px-3 text-xs font-bold rounded-xl border text-center transition-all ${
-                      isSelected
+                    className={`py-2 px-3 text-xs font-bold rounded-xl border text-center transition-all ${isSelected
                         ? "bg-slate-900 border-slate-900 text-white shadow-xs"
                         : "bg-white border-slate-200 text-slate-700 hover:border-slate-300"
-                    }`}
+                      }`}
                   >
                     {size}
                   </button>
@@ -272,7 +350,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               {/* Add to Bag Button */}
               <button
                 onClick={handleAddToCart}
-                disabled={!selectedColor || !selectedSize}
+                disabled={(product.colors.length > 0 && !selectedColor) || !selectedSize}
                 className="flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-brand-yellow hover:bg-brand-yellow-hover text-slate-950 font-heading font-bold text-base shadow-md hover:shadow-lg transition-all active:scale-95 disabled:opacity-50"
               >
                 <ShoppingBag className="w-5 h-5 text-slate-950" />
@@ -293,3 +371,4 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
     </div>
   );
 };
+

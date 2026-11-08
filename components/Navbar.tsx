@@ -15,6 +15,7 @@ import {
   Gift,
   HelpCircle,
   Package,
+  Instagram,
 } from "lucide-react";
 import { MEGA_MENU_DATA } from "@/data/megaMenu";
 import { useCart } from "@/context/CartContext";
@@ -107,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 sm:h-24 py-1 sm:py-2">
           {/* Mobile hamburger button */}
           <div className="flex items-center lg:hidden">
             <button
@@ -120,20 +121,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Brand Name Logo */}
-          <div className="flex-shrink-0 flex items-center gap-3">
-            <Link href="/" className="group flex items-center gap-2.5">
-              <span className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-coral via-brand-yellow to-brand-mint flex items-center justify-center text-white font-heading font-extrabold text-xl shadow-md group-hover:scale-105 transition-transform">
-                T
-              </span>
-              <div className="flex flex-col">
-                <span className="font-heading font-bold text-xl sm:text-2xl text-slate-900 tracking-tight flex items-center gap-1.5">
-                  Trendora
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-brand-yellow/20 text-brand-yellow-hover font-semibold tracking-wide uppercase">
-                    Kids Hub
-                  </span>
+          <div className="flex-shrink-0 flex items-center">
+            <Link href="/" className="group flex items-center gap-3">
+              <img
+                src="/logo.png"
+                alt="Trendora - Trend That Speaks"
+                className="h-12 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              />
+              <div className="flex flex-col justify-center select-none">
+                <span className="font-logo font-black text-base sm:text-lg lg:text-xl tracking-[0.04em] leading-none">
+                  <span className="text-[#DB0416]">TREND</span>
+                  <span className="text-[#FABD1B]">O</span>
+                  <span className="text-[#DB0416]">RA</span>
                 </span>
-                <span className="text-[10px] uppercase font-semibold tracking-widest text-slate-400">
-                  Playful & Organic Living
+                <span className="self-end text-right text-[8px] sm:text-[9px] lg:text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-slate-800 mt-[1.5px] leading-none">
+                  kids hub
                 </span>
               </div>
             </Link>
@@ -183,6 +185,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Search className="w-5 h-5 group-hover:scale-110 transition-transform text-slate-600" />
             </button>
+
+            {/* Instagram Link */}
+            <a
+              href="https://www.instagram.com/trendora_kids_hub/#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group"
+              aria-label="Follow Trendora Kids Hub on Instagram"
+              title="Instagram (@trendora_kids_hub)"
+            >
+              <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform text-slate-600 group-hover:text-pink-600" />
+            </a>
 
             {/* User Profile Dropdown */}
             <div className="relative" ref={userMenuRef}>
@@ -275,7 +289,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="col-span-8 grid grid-cols-3 gap-6">
                 {MEGA_MENU_DATA[activeMenu].sections?.map((section, idx) => (
                   <div key={idx} className="space-y-3">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    <h4
+                      onClick={() => {
+                        if (section.title.includes("Girls") && onSelectGender) {
+                          setActiveMenu(null);
+                          onSelectGender("Girls");
+                        } else if (section.title.includes("Boys") && onSelectGender) {
+                          setActiveMenu(null);
+                          onSelectGender("Boys");
+                        }
+                      }}
+                      className="text-xs font-bold text-slate-400 uppercase tracking-wider hover:text-slate-900 cursor-pointer transition-colors"
+                    >
                       {section.title}
                     </h4>
                     <ul className="space-y-2">
@@ -326,6 +351,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <button
                       onClick={() => {
                         setActiveMenu(null);
+                        if (activeMenu === "Shop by Gender" && onSelectGender) {
+                          onSelectGender("Girls");
+                        }
                         const section = document.getElementById("catalog-section");
                         if (section) section.scrollIntoView({ behavior: "smooth" });
                       }}
@@ -344,7 +372,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[115px] z-50 bg-black/40 backdrop-blur-sm">
+        <div className="lg:hidden fixed inset-0 top-full z-50 bg-black/40 backdrop-blur-sm">
           <div className="bg-white w-full max-h-[85vh] overflow-y-auto rounded-b-3xl shadow-2xl p-6 border-t border-slate-100">
             {/* Quick search input */}
             <div className="mb-5">
@@ -436,3 +464,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+
