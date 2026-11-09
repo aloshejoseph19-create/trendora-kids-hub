@@ -1,21 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import MobileDrawer from "@/components/MobileDrawer";
-import SearchModal from "@/components/SearchModal";
-import CustomCursor from "@/components/CustomCursor";
-import ScrollProgress from "@/components/ScrollProgress";
-import Hero from "@/components/Hero";
-import MarqueeTicker from "@/components/MarqueeTicker";
-import Collections from "@/components/Collections";
-import OurStory from "@/components/OurStory";
-import Testimonials from "@/components/Testimonials";
-import EnquiryForm from "@/components/EnquiryForm";
-import Newsletter from "@/components/Newsletter";
-import Footer from "@/components/Footer";
-import Toast from "@/components/Toast";
-import MobileBottomDock from "@/components/MobileBottomDock";
+import Navbar from "../components/Navbar";
+import MobileDrawer from "../components/MobileDrawer";
+import SearchModal from "../components/SearchModal";
+import CustomCursor from "../components/CustomCursor";
+import ScrollProgress from "../components/ScrollProgress";
+import Hero from "../components/Hero";
+import MarqueeTicker from "../components/MarqueeTicker";
+import Collections from "../components/Collections";
+import OurStory from "../components/OurStory";
+import Testimonials from "../components/Testimonials";
+import EnquiryForm from "../components/EnquiryForm";
+import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
+import Toast from "../components/Toast";
+import MobileBottomDock from "../components/MobileBottomDock";
 
 export default function Home() {
   const [cartCount, setCartCount] = useState(0);
