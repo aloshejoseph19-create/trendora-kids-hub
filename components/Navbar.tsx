@@ -107,34 +107,34 @@ export const Navbar: React.FC<NavbarProps> = ({
         isScrolled ? "border-slate-200 shadow-sm" : "border-slate-100"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-24 py-1 sm:py-2">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-20 lg:h-24 py-1 sm:py-2">
           {/* Mobile hamburger button */}
           <div className="flex items-center lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 -ml-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              className="p-1.5 sm:p-2 -ml-1 sm:-ml-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
 
           {/* Brand Name Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="group flex items-center gap-3">
+            <Link href="/" className="group flex items-center gap-1.5 sm:gap-3">
               <img
                 src="/logo.png"
                 alt="Trendora - Trend That Speaks"
-                className="h-12 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                className="h-8 sm:h-12 lg:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               />
               <div className="flex flex-col justify-center select-none">
-                <span className="font-logo font-black text-base sm:text-lg lg:text-xl tracking-[0.04em] leading-none">
+                <span className="font-logo font-black text-sm sm:text-lg lg:text-xl tracking-[0.04em] leading-none">
                   <span className="text-[#DB0416]">TREND</span>
                   <span className="text-[#FABD1B]">O</span>
                   <span className="text-[#DB0416]">RA</span>
                 </span>
-                <span className="self-end text-right text-[8px] sm:text-[9px] lg:text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-slate-800 mt-[1.5px] leading-none">
+                <span className="self-end text-right text-[7px] sm:text-[9px] lg:text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-slate-800 mt-[1px] sm:mt-[1.5px] leading-none">
                   kids hub
                 </span>
               </div>
@@ -175,15 +175,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Action Icons */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3">
             {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              className="p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group"
+              className="p-1.5 sm:p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group"
               aria-label="Search catalog"
               title="Search catalog (Cmd+K)"
             >
-              <Search className="w-5 h-5 group-hover:scale-110 transition-transform text-slate-600" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform text-slate-600" />
             </button>
 
             {/* Instagram Link */}
@@ -191,25 +191,25 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="https://www.instagram.com/trendora_kids_hub/#"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group"
+              className="p-1.5 sm:p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group"
               aria-label="Follow Trendora Kids Hub on Instagram"
               title="Instagram (@trendora_kids_hub)"
             >
-              <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform text-slate-600 group-hover:text-pink-600" />
+              <Instagram className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform text-slate-600 group-hover:text-pink-600" />
             </a>
 
             {/* User Profile Dropdown */}
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative"
+                className="p-1.5 sm:p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors relative"
                 aria-label="User Account"
               >
-                <User className="w-5 h-5 text-slate-600" />
+                <User className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute right-0 mt-2 sm:mt-3 w-56 sm:w-64 bg-white rounded-2xl shadow-xl border border-slate-100 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="px-4 py-2 border-b border-slate-100">
                     <p className="text-xs text-slate-400 font-medium">Signed in as</p>
                     <p className="text-sm font-semibold text-slate-800 truncate">emma.parent@trendora.com</p>
@@ -262,12 +262,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Shopping Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2.5 rounded-full text-slate-800 hover:bg-brand-yellow/15 transition-all group"
+              className="relative p-1.5 sm:p-2.5 rounded-full text-slate-800 hover:bg-brand-yellow/15 transition-all group"
               aria-label={`Shopping bag with ${totalCount} items`}
             >
-              <ShoppingBag className="w-5 h-5 text-slate-700 group-hover:text-slate-900 group-hover:scale-110 transition-transform" />
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-slate-700 group-hover:text-slate-900 group-hover:scale-110 transition-transform" />
               {totalCount > 0 && (
-                <span className="absolute top-1 right-1 w-5 h-5 rounded-full bg-brand-coral text-white text-[11px] font-bold flex items-center justify-center shadow-md animate-soft-pulse">
+                <span className="absolute top-0 right-0 sm:top-1 sm:right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-brand-coral text-white text-[9px] sm:text-[11px] font-bold flex items-center justify-center shadow-md animate-soft-pulse">
                   {totalCount}
                 </span>
               )}
@@ -372,36 +372,40 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-full z-50 bg-black/40 backdrop-blur-sm">
-          <div className="bg-white w-full max-h-[85vh] overflow-y-auto rounded-b-3xl shadow-2xl p-6 border-t border-slate-100">
+        <div className="lg:hidden fixed inset-x-0 top-14 sm:top-20 bottom-0 z-50 bg-slate-950/60 backdrop-blur-xs flex flex-col justify-start animate-in fade-in duration-200">
+          <div
+            className="absolute inset-0 -z-10"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="bg-white w-full max-h-[80vh] overflow-y-auto rounded-b-3xl shadow-2xl p-4 sm:p-6 border-t border-slate-100 animate-in slide-in-from-top-3 duration-200">
             {/* Quick search input */}
-            <div className="mb-5">
+            <div className="mb-4 sm:mb-5">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenSearch();
                 }}
-                className="w-full flex items-center justify-between px-4 py-3 bg-slate-50 rounded-xl text-slate-400 text-sm font-medium border border-slate-200"
+                className="w-full flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 bg-slate-50 hover:bg-slate-100 rounded-xl text-slate-400 text-xs sm:text-sm font-medium border border-slate-200 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <Search className="w-4 h-4 text-slate-400" />
                   Search dresses, toys, sizes...
                 </span>
-                <span className="text-xs bg-white px-2 py-0.5 rounded text-slate-500 border border-slate-200">
+                <span className="text-[10px] sm:text-xs bg-white px-2 py-0.5 rounded text-slate-500 border border-slate-200">
                   Find
                 </span>
               </button>
             </div>
 
             {/* Category tabs */}
-            <div className="flex space-x-2 border-b border-slate-200 pb-3 overflow-x-auto no-scrollbar">
+            <div className="flex space-x-1.5 sm:space-x-2 border-b border-slate-200 pb-2.5 sm:pb-3 overflow-x-auto no-scrollbar">
               {navItems.map((item) => (
                 <button
                   key={item.key}
                   onClick={() => setMobileActiveTab(item.key)}
                   className={`px-3 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap transition-colors ${
                     mobileActiveTab === item.key
-                      ? "bg-slate-900 text-white"
+                      ? "bg-slate-900 text-white shadow-xs"
                       : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                   }`}
                 >
@@ -412,18 +416,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Mobile Tab Content */}
             {mobileActiveTab && MEGA_MENU_DATA[mobileActiveTab] && (
-              <div className="mt-5 space-y-5">
+              <div className="mt-4 sm:mt-5 space-y-4 sm:space-y-5">
                 {MEGA_MENU_DATA[mobileActiveTab].sections?.map((section, idx) => (
-                  <div key={idx} className="space-y-2">
-                    <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <div key={idx} className="space-y-1.5 sm:space-y-2">
+                    <p className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
                       {section.title}
                     </p>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                       {section.items.map((item, itemIdx) => (
                         <button
                           key={itemIdx}
                           onClick={() => handleMenuItemClick(item)}
-                          className="text-left text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl transition-colors"
+                          className="text-left text-xs sm:text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 p-2 sm:p-2.5 rounded-xl transition-colors line-clamp-1"
                         >
                           {item.label}
                         </button>
@@ -433,14 +437,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 ))}
 
                 {MEGA_MENU_DATA[mobileActiveTab].featured && (
-                  <div className="bg-brand-lavender/40 p-4 rounded-2xl flex items-center gap-4">
+                  <div className="bg-brand-lavender/40 p-3 sm:p-4 rounded-2xl flex items-center gap-3 sm:gap-4">
                     <img
                       src={MEGA_MENU_DATA[mobileActiveTab].featured!.imageUrl}
                       alt="Featured"
-                      className="w-16 h-16 rounded-xl object-cover"
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover shrink-0"
                     />
-                    <div>
-                      <p className="font-heading font-bold text-sm text-slate-800">
+                    <div className="min-w-0 flex-1">
+                      <p className="font-heading font-bold text-xs sm:text-sm text-slate-800 truncate">
                         {MEGA_MENU_DATA[mobileActiveTab].featured!.title}
                       </p>
                       <button
@@ -449,7 +453,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           const section = document.getElementById("catalog-section");
                           if (section) section.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className="text-xs font-bold text-brand-coral mt-1 flex items-center gap-1"
+                        className="text-[11px] sm:text-xs font-bold text-brand-coral mt-1 flex items-center gap-1 hover:underline"
                       >
                         Explore now <ArrowRight className="w-3 h-3" />
                       </button>

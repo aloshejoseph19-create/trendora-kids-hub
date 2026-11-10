@@ -16,25 +16,25 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-900 text-white pt-10 sm:pt-16 pb-8 sm:pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Newsletter Callout Card */}
-        <div className="bg-gradient-to-r from-brand-coral via-rose-500 to-amber-500 rounded-3xl p-8 sm:p-10 mb-16 shadow-xl relative overflow-hidden">
-          <div className="max-w-2xl relative z-10 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
-              <Sparkles className="w-3.5 h-3.5" />
+        <div className="bg-gradient-to-r from-brand-coral via-rose-500 to-amber-500 rounded-2xl sm:rounded-3xl p-5 sm:p-10 mb-10 sm:mb-16 shadow-xl relative overflow-hidden">
+          <div className="max-w-2xl relative z-10 space-y-2.5 sm:space-y-3">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/20 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               Join the Play Club
             </span>
-            <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+            <h3 className="font-heading font-extrabold text-xl sm:text-3xl text-white tracking-tight">
               Get 15% off + Free Printable Coloring Pages every month!
             </h3>
             <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
               Be the first to hear about organic fabric drops, seasonal sales, and pediatric play tips delivered right to your inbox.
             </p>
 
-            <form onSubmit={handleSubscribe} className="pt-2 flex flex-col sm:flex-row gap-2 max-w-md">
+            <form onSubmit={handleSubscribe} className="pt-1.5 sm:pt-2 flex flex-col sm:flex-row gap-2 max-w-md">
               {isSubscribed ? (
-                <div className="bg-white text-emerald-800 px-4 py-3 rounded-2xl flex items-center gap-2 font-bold text-xs sm:text-sm">
+                <div className="bg-white text-emerald-800 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 font-bold text-xs sm:text-sm">
                   <Check className="w-4 h-4 text-emerald-600" />
                   Welcome to the Club! Check your inbox for your 15% code.
                 </div>
@@ -46,11 +46,11 @@ export const Footer: React.FC = () => {
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 bg-white px-4 py-3.5 rounded-2xl text-slate-800 text-xs sm:text-sm placeholder-slate-400 focus:outline-hidden font-medium"
+                    className="flex-1 bg-white px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-xl sm:rounded-2xl text-slate-800 text-xs sm:text-sm placeholder-slate-400 focus:outline-hidden font-medium"
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3.5 rounded-2xl bg-slate-950 hover:bg-slate-800 text-white font-heading font-bold text-xs sm:text-sm shadow-md transition-colors whitespace-nowrap"
+                    className="px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl bg-slate-950 hover:bg-slate-800 text-white font-heading font-bold text-xs sm:text-sm shadow-md transition-colors whitespace-nowrap"
                   >
                     Subscribe
                   </button>
@@ -64,27 +64,27 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Footer Navigation Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 pb-8 sm:pb-12 border-b border-slate-800">
           {/* Brand Info */}
-          <div className="col-span-2 lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3 flex-wrap">
-              <div className="bg-white p-1.5 rounded-2xl shadow-md flex-shrink-0">
+          <div className="col-span-2 lg:col-span-2 space-y-3 sm:space-y-4">
+            <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+              <div className="bg-white p-1 rounded-xl sm:rounded-2xl shadow-md flex-shrink-0">
                 <img
                   src="/logo.png"
                   alt="Trendora - Trend That Speaks"
-                  className="h-14 sm:h-16 w-auto object-contain rounded-xl"
+                  className="h-10 sm:h-16 w-auto object-contain rounded-lg sm:rounded-xl"
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <span className="font-logo font-black text-lg sm:text-xl tracking-[0.04em] leading-none">
+                <span className="font-logo font-black text-base sm:text-xl tracking-[0.04em] leading-none">
                   <span className="text-[#DB0416]">TREND</span>
                   <span className="text-[#FABD1B]">O</span>
                   <span className="text-[#DB0416]">RA</span>
                 </span>
-                <span className="self-end text-right text-[9px] sm:text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-white mt-[1.5px] leading-none">
+                <span className="self-end text-right text-[8px] sm:text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-white mt-[1px] sm:mt-[1.5px] leading-none">
                   kids hub
                 </span>
-                <p className="text-[11px] text-brand-yellow font-semibold tracking-wide mt-1">
+                <p className="text-[10px] sm:text-[11px] text-brand-yellow font-semibold tracking-wide mt-0.5 sm:mt-1">
                   Trend That Speaks.
                 </p>
               </div>
@@ -94,16 +94,16 @@ export const Footer: React.FC = () => {
             </p>
 
             {/* Store Location & WhatsApp Details */}
-            <div className="pt-2 space-y-2.5 border-t border-slate-800">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="pt-2 space-y-2 border-t border-slate-800">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2">
                 <a
                   href="https://www.google.com/maps/dir/?api=1&destination=12.192970996477367,75.46639052329934"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/map flex items-start gap-2 text-xs text-slate-300 hover:text-white transition-colors"
+                  className="group/map flex items-start gap-1.5 text-xs text-slate-300 hover:text-white transition-colors"
                   title="Store Location (12.192970996477367, 75.46639052329934)"
                 >
-                  <MapPin className="w-4 h-4 text-brand-coral flex-shrink-0 mt-0.5 group-hover/map:scale-110 group-hover/map:text-brand-yellow transition-all" />
+                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-coral flex-shrink-0 mt-0.5 group-hover/map:scale-110 group-hover/map:text-brand-yellow transition-all" />
                   <span className="group-hover/map:underline decoration-brand-coral underline-offset-2">
                     Opp. NSS School, Alakode
                   </span>
@@ -113,22 +113,22 @@ export const Footer: React.FC = () => {
                   href="https://www.google.com/maps/dir/?api=1&destination=12.192970996477367,75.46639052329934"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-brand-yellow hover:text-slate-950 text-white text-[11px] font-bold border border-white/20 transition-all group/dir w-fit"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-white/10 hover:bg-brand-yellow hover:text-slate-950 text-white text-[10px] sm:text-[11px] font-bold border border-white/20 transition-all group/dir w-fit"
                   title="Navigate with Google Maps directions"
                 >
-                  <Navigation className="w-3 h-3 group-hover/dir:rotate-45 transition-transform" />
+                  <Navigation className="w-2.5 h-2.5 sm:w-3 sm:h-3 group-hover/dir:rotate-45 transition-transform" />
                   <span>Get Directions</span>
                 </a>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <a
                   href="https://wa.me/919747476002"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition-colors group"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-[11px] sm:text-xs font-bold transition-colors group"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                  <MessageCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
                   <span>WhatsApp: 9747476002</span>
                 </a>
 
@@ -136,9 +136,9 @@ export const Footer: React.FC = () => {
                   href="https://www.instagram.com/trendora_kids_hub/#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-pink-500/15 hover:bg-pink-500/25 text-pink-400 border border-pink-500/30 text-xs font-bold transition-colors group"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-pink-500/15 hover:bg-pink-500/25 text-pink-400 border border-pink-500/30 text-[11px] sm:text-xs font-bold transition-colors group"
                 >
-                  <Instagram className="w-3.5 h-3.5 text-pink-400 group-hover:scale-110 transition-transform" />
+                  <Instagram className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-pink-400 group-hover:scale-110 transition-transform" />
                   <span>@trendora_kids_hub</span>
                 </a>
               </div>

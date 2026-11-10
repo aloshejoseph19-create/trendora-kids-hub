@@ -44,26 +44,26 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
     activeTab === "baby" ? babySizes : activeTab === "toddler" ? toddlerSizes : kidsSizes;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="bg-white w-full max-w-3xl rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="bg-white w-full max-w-3xl rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[90vh] flex flex-col">
         {/* Modal Header */}
-        <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-surface-subtle">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-brand-yellow/20 text-brand-yellow-hover flex items-center justify-center">
-              <Ruler className="w-5 h-5" />
+        <div className="p-4 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-surface-subtle">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-brand-yellow/20 text-brand-yellow-hover flex items-center justify-center">
+              <Ruler className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h3 className="font-heading font-bold text-xl text-slate-900">
+              <h3 className="font-heading font-bold text-base sm:text-xl text-slate-900">
                 Children&apos;s Sizing Guide
               </h3>
-              <p className="text-xs text-slate-500">
-                True to size fits with built-in wiggle & growth room.
+              <p className="text-[11px] sm:text-xs text-slate-500">
+                True to size fits with built-in wiggle room.
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+            className="p-1.5 sm:p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -71,12 +71,12 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
         </div>
 
         {/* Tab & Unit Controls */}
-        <div className="p-6 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-3.5 sm:p-6 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
           {/* Age Tabs */}
-          <div className="flex bg-slate-100 p-1 rounded-2xl">
+          <div className="flex bg-slate-100 p-0.5 sm:p-1 rounded-xl sm:rounded-2xl">
             <button
               onClick={() => setActiveTab("baby")}
-              className={`px-4 py-1.5 text-xs font-bold rounded-xl transition-all ${
+              className={`flex-1 sm:flex-none px-2.5 py-1 sm:px-4 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-lg sm:rounded-xl transition-all ${
                 activeTab === "baby"
                   ? "bg-white text-slate-900 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -86,7 +86,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
             </button>
             <button
               onClick={() => setActiveTab("toddler")}
-              className={`px-4 py-1.5 text-xs font-bold rounded-xl transition-all ${
+              className={`flex-1 sm:flex-none px-2.5 py-1 sm:px-4 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-lg sm:rounded-xl transition-all ${
                 activeTab === "toddler"
                   ? "bg-white text-slate-900 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -96,7 +96,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
             </button>
             <button
               onClick={() => setActiveTab("kids")}
-              className={`px-4 py-1.5 text-xs font-bold rounded-xl transition-all ${
+              className={`flex-1 sm:flex-none px-2.5 py-1 sm:px-4 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-lg sm:rounded-xl transition-all ${
                 activeTab === "kids"
                   ? "bg-white text-slate-900 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
@@ -108,11 +108,11 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
 
           {/* Unit Toggle */}
           <div className="flex items-center gap-2 self-end sm:self-auto">
-            <span className="text-xs text-slate-500 font-semibold">Unit:</span>
+            <span className="text-[11px] sm:text-xs text-slate-500 font-semibold">Unit:</span>
             <div className="inline-flex rounded-xl border border-slate-200 p-0.5 bg-slate-50">
               <button
                 onClick={() => setUnit("in")}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-colors ${
+                className={`px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs font-bold rounded-lg transition-colors ${
                   unit === "in"
                     ? "bg-brand-coral text-white"
                     : "text-slate-600 hover:text-slate-900"
@@ -122,7 +122,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
               </button>
               <button
                 onClick={() => setUnit("cm")}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-colors ${
+                className={`px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs font-bold rounded-lg transition-colors ${
                   unit === "cm"
                     ? "bg-brand-coral text-white"
                     : "text-slate-600 hover:text-slate-900"
@@ -135,15 +135,15 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
         </div>
 
         {/* Sizing Table */}
-        <div className="p-6 overflow-y-auto space-y-6">
-          <div className="overflow-x-auto rounded-2xl border border-slate-200">
+        <div className="p-3.5 sm:p-6 overflow-y-auto space-y-4 sm:space-y-6">
+          <div className="overflow-x-auto rounded-xl sm:rounded-2xl border border-slate-200">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-slate-50 text-slate-500 uppercase text-[11px] font-bold tracking-wider">
+              <thead className="bg-slate-50 text-slate-500 uppercase text-[10px] sm:text-[11px] font-bold tracking-wider">
                 <tr>
-                  <th className="py-3 px-4">Size</th>
-                  <th className="py-3 px-4">Height ({unit})</th>
-                  <th className="py-3 px-4">Weight ({unit === "in" ? "lbs" : "kg"})</th>
-                  <th className="py-3 px-4">Chest ({unit})</th>
+                  <th className="py-2.5 px-3 sm:py-3 sm:px-4">Size</th>
+                  <th className="py-2.5 px-3 sm:py-3 sm:px-4">Height ({unit})</th>
+                  <th className="py-2.5 px-3 sm:py-3 sm:px-4">Weight ({unit === "in" ? "lbs" : "kg"})</th>
+                  <th className="py-2.5 px-3 sm:py-3 sm:px-4">Chest ({unit})</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 font-medium text-slate-700">

@@ -64,16 +64,16 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
     filters.searchQuery !== "";
 
   return (
-    <aside className="w-full bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-7 sticky top-28">
+    <aside className="w-full bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-xs space-y-4 sm:space-y-6 sticky top-28">
       {/* Header with Title and Reset */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+      <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-slate-100">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-brand-yellow/15 flex items-center justify-center text-slate-800">
-            <Filter className="w-4 h-4 text-brand-yellow-hover" />
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-brand-yellow/15 flex items-center justify-center text-slate-800">
+            <Filter className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-yellow-hover" />
           </div>
           <div>
-            <h3 className="font-heading font-bold text-base text-slate-900">Filters</h3>
-            <p className="text-[11px] text-slate-400 font-medium">
+            <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900">Filters</h3>
+            <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
               Showing {totalFilteredCount} matching items
             </p>
           </div>
@@ -82,27 +82,27 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
         {hasActiveFilters && (
           <button
             onClick={onResetFilters}
-            className="inline-flex items-center gap-1 text-xs font-bold text-brand-coral hover:text-brand-coral-hover transition-colors"
+            className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-brand-coral hover:text-brand-coral-hover transition-colors"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Reset
           </button>
         )}
       </div>
 
       {/* 1. Category Selector */}
-      <div className="space-y-3">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+      <div className="space-y-2 sm:space-y-3">
+        <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
           Categories
         </label>
-        <div className="space-y-1.5">
+        <div className="space-y-1 sm:space-y-1.5">
           {categoryOptions.map((cat) => {
             const isSelected = filters.category === cat;
             return (
               <button
                 key={cat}
                 onClick={() => onFilterChange({ ...filters, category: cat })}
-                className={`w-full text-left px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between ${
+                className={`w-full text-left px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-between ${
                   isSelected
                     ? "bg-slate-900 text-white shadow-xs"
                     : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
@@ -117,19 +117,19 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 2. Age Group Toggles (Baby, Toddler, Kids) */}
-      <div className="space-y-3 pt-2 border-t border-slate-100">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+      <div className="space-y-2 sm:space-y-3 pt-2 border-t border-slate-100">
+        <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
           <span>Age Group</span>
           <span className="text-[10px] text-slate-400 font-normal">Select multiple</span>
         </label>
-        <div className="space-y-2">
+        <div className="space-y-1.5 sm:space-y-2">
           {ageGroupOptions.map((age) => {
             const isChecked = filters.ageGroups.includes(age);
             return (
               <label
                 key={age}
                 onClick={() => handleAgeToggle(age)}
-                className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${
+                className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg sm:rounded-xl border cursor-pointer transition-all ${
                   isChecked
                     ? "bg-brand-yellow/10 border-brand-yellow/60 text-slate-900 font-bold"
                     : "border-slate-200/80 hover:border-slate-300 text-slate-700 font-medium"
@@ -152,8 +152,8 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 3. Gender Filter */}
-      <div className="space-y-3 pt-2 border-t border-slate-100">
-        <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+      <div className="space-y-2 sm:space-y-3 pt-2 border-t border-slate-100">
+        <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
           Shop by Gender
         </label>
         <div className="grid grid-cols-2 gap-1.5">
@@ -169,7 +169,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                     category: filters.category === "Toys & Games" ? "All" : filters.category,
                   })
                 }
-                className={`py-2 px-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
+                className={`py-1.5 sm:py-2 px-2 sm:px-2.5 rounded-lg sm:rounded-xl text-xs font-bold border transition-all text-center ${
                   isSelected
                     ? "bg-brand-coral border-brand-coral text-white shadow-2xs font-extrabold"
                     : "bg-white border-slate-200/80 text-slate-700 hover:border-slate-300"
@@ -183,15 +183,15 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 4. Sizes Toggle Grid */}
-      <div className="space-y-3 pt-2 border-t border-slate-100">
+      <div className="space-y-2 sm:space-y-3 pt-2 border-t border-slate-100">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
             Available Sizes
           </label>
           {filters.sizes.length > 0 && (
             <button
               onClick={() => onFilterChange({ ...filters, sizes: [] })}
-              className="text-[11px] text-slate-400 hover:text-slate-600 font-semibold"
+              className="text-[10px] sm:text-[11px] text-slate-400 hover:text-slate-600 font-semibold"
             >
               Clear
             </button>
@@ -204,7 +204,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
               <button
                 key={size}
                 onClick={() => handleSizeToggle(size)}
-                className={`py-2 text-xs font-bold rounded-xl border text-center transition-all ${
+                className={`py-1.5 sm:py-2 text-xs font-bold rounded-lg sm:rounded-xl border text-center transition-all ${
                   isSelected
                     ? "bg-slate-900 border-slate-900 text-white shadow-2xs"
                     : "bg-surface-subtle border-slate-200/80 text-slate-600 hover:border-slate-300 hover:text-slate-900"
@@ -218,30 +218,30 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 5. Visual Color Swatches */}
-      <div className="space-y-3 pt-2 border-t border-slate-100">
+      <div className="space-y-2 sm:space-y-3 pt-2 border-t border-slate-100">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
             Color Swatches
           </label>
           {filters.colors.length > 0 && (
             <button
               onClick={() => onFilterChange({ ...filters, colors: [] })}
-              className="text-[11px] text-slate-400 hover:text-slate-600 font-semibold"
+              className="text-[10px] sm:text-[11px] text-slate-400 hover:text-slate-600 font-semibold"
             >
               Clear
             </button>
           )}
         </div>
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap gap-2 sm:gap-2.5">
           {AVAILABLE_COLORS.map((color) => {
             const isSelected = filters.colors.includes(color.name);
             return (
               <button
                 key={color.name}
                 onClick={() => handleColorToggle(color.name)}
-                className={`w-7 h-7 rounded-full flex items-center justify-center transition-all relative ${
+                className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-all relative ${
                   isSelected
-                    ? "ring-2 ring-slate-900 ring-offset-2 scale-110 shadow-sm"
+                    ? "ring-2 ring-slate-900 ring-offset-2 scale-110 shadow-xs"
                     : "hover:scale-105 border border-slate-200"
                 }`}
                 style={{ backgroundColor: color.hex }}
@@ -250,7 +250,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
               >
                 {isSelected && (
                   <Check
-                    className={`w-3.5 h-3.5 ${
+                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${
                       color.name === "Soft Cream" ? "text-slate-900" : "text-white"
                     }`}
                   />
@@ -262,9 +262,9 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
       </div>
 
       {/* 6. Price Slider Filter */}
-      <div className="space-y-3 pt-2 border-t border-slate-100">
+      <div className="space-y-2 sm:space-y-3 pt-2 border-t border-slate-100">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">
             Max Price
           </label>
           <span className="text-xs font-extrabold text-slate-900">
@@ -285,7 +285,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
           }
           className="w-full accent-brand-coral cursor-pointer"
         />
-        <div className="flex justify-between text-[11px] text-slate-400 font-medium">
+        <div className="flex justify-between text-[10px] sm:text-[11px] text-slate-400 font-medium">
           <span>$15</span>
           <span>$50</span>
           <span>$100</span>

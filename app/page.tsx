@@ -188,17 +188,17 @@ export default function Home() {
         <TrustIndicators />
 
         {/* 5. Main Catalog Section with Sidebar Filter & Product Grid */}
-        <section id="catalog-section" className="py-12 lg:py-16 bg-surface-subtle/40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="catalog-section" className="py-6 sm:py-12 lg:py-16 bg-surface-subtle/40">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-coral bg-brand-coral/10 px-3 py-1 rounded-full">
+            <div className="mb-4 sm:mb-8">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-coral bg-brand-coral/10 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full">
                 Playful Kids Collection
               </span>
-              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 mt-1.5 sm:mt-2">
                 Pure Comfort for Active Days
               </h2>
-              <p className="text-sm text-slate-500 mt-1 max-w-xl">
+              <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-xl">
                 Browse our sustainably sourced double gauze dresses, organic knitwear, and non-toxic wooden toys designed to outlast the wildest playtime.
               </p>
             </div>
@@ -243,10 +243,10 @@ export default function Home() {
             onClick={() => setMobileFilterOpen(false)}
             className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity"
           />
-          <div className="fixed inset-y-0 left-0 max-w-full flex pr-10">
-            <aside aria-label="Filters" className="w-screen max-w-xs bg-white shadow-2xl flex flex-col justify-between overflow-y-auto p-5">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                <h3 className="font-heading font-bold text-lg text-slate-900">
+          <div className="fixed inset-y-0 left-0 max-w-full flex pr-8 sm:pr-10">
+            <aside aria-label="Filters" className="w-[85vw] max-w-xs bg-white shadow-2xl flex flex-col justify-between overflow-y-auto p-4 sm:p-5">
+              <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-slate-100">
+                <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">
                   Filter Catalog
                 </h3>
                 <button
@@ -258,7 +258,7 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="py-4">
+              <div className="py-3 sm:py-4">
                 <SidebarFilter
                   filters={filters}
                   onFilterChange={setFilters}
@@ -267,10 +267,10 @@ export default function Home() {
                 />
               </div>
 
-              <div className="pt-4 border-t border-slate-100">
+              <div className="pt-3 sm:pt-4 border-t border-slate-100">
                 <button
                   onClick={() => setMobileFilterOpen(false)}
-                  className="w-full py-3.5 rounded-xl bg-slate-900 text-white font-heading font-bold text-sm shadow-md"
+                  className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-heading font-bold text-sm shadow-md transition-colors"
                 >
                   View {filteredProducts.length} Results
                 </button>
@@ -312,12 +312,12 @@ export default function Home() {
 
       {/* Toast Notification Alert */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 animate-in slide-in-from-bottom-3 duration-200">
-          <CheckCircle2 className="w-5 h-5 text-brand-mint flex-shrink-0" />
-          <span className="text-xs sm:text-sm font-semibold">{toastMessage}</span>
+        <div className="fixed bottom-16 sm:bottom-6 right-3 left-3 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-slate-900 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2.5 sm:gap-3 border border-slate-700 animate-in slide-in-from-bottom-3 duration-200">
+          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-brand-mint shrink-0" />
+          <span className="text-xs sm:text-sm font-semibold flex-1">{toastMessage}</span>
           <button
             onClick={clearToast}
-            className="p-1 text-slate-400 hover:text-white transition-colors ml-1"
+            className="p-1 text-slate-400 hover:text-white transition-colors shrink-0 ml-1"
             aria-label="Dismiss notification"
           >
             <X className="w-3.5 h-3.5" />

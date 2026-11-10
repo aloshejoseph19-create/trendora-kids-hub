@@ -59,92 +59,92 @@ export const Hero: React.FC<HeroProps> = ({
     return () => clearInterval(interval);
   }, [isPaused]);
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-surface-subtle via-white to-white pt-8 pb-14 sm:pt-12 sm:pb-20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-surface-subtle via-white to-white pt-5 pb-8 sm:pt-12 sm:pb-20">
       {/* Subtle organic decorative background circles (minimalist, low opacity) */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-amber-100/40 via-rose-100/30 to-emerald-100/30 blur-3xl -z-10 pointer-events-none rounded-full" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[300px] sm:h-[400px] bg-gradient-to-r from-amber-100/40 via-rose-100/30 to-emerald-100/30 blur-3xl -z-10 pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-8 items-center">
           {/* Left Column: Playful Copy & CTAs */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left">
             {/* Playful pill badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-yellow/15 text-slate-800 text-xs sm:text-sm font-semibold tracking-wide border border-brand-yellow/30 shadow-xs">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-brand-yellow/15 text-slate-800 text-[11px] sm:text-sm font-semibold tracking-wide border border-brand-yellow/30 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-brand-yellow animate-ping" />
               <span>New Spring & Summer Edit 2026</span>
               <Sparkles className="w-3.5 h-3.5 text-brand-yellow-hover ml-0.5" />
             </div>
 
             {/* Main Playful Headline */}
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.12]">
+            <h1 className="font-heading font-extrabold text-[26px] sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.18] sm:leading-[1.12]">
               Dressed for <span className="text-brand-coral underline decoration-brand-yellow/60 decoration-wavy decoration-2">Wonder</span>, Built for Pure Everyday Play.
             </h1>
 
             {/* Subtitle with generous whitespace */}
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            <p className="text-xs sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
               Thoughtfully curated childrenswear, heirloom wooden toys, and baby essentials crafted with <strong className="font-semibold text-slate-800">100% GOTS organic cotton</strong> and baby-safe non-toxic dyes.
             </p>
 
             {/* Call-to-Action Group */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+            <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-4">
               <button
                 onClick={onShopNowClick}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-brand-coral hover:bg-brand-coral-hover text-white font-heading font-bold text-base sm:text-lg shadow-lg hover:shadow-coral-200 transition-all duration-200 active:scale-95 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-brand-coral hover:bg-brand-coral-hover text-white font-heading font-bold text-sm sm:text-base lg:text-lg shadow-md hover:shadow-coral-200 transition-all duration-200 active:scale-95 group"
               >
                 <span>Shop the Collection</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-200" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform duration-200" />
               </button>
 
               <button
                 onClick={() => onSelectCategory("Toys & Games")}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-heading font-semibold text-base border-2 border-slate-200/80 hover:border-slate-300 transition-all duration-200"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-heading font-semibold text-xs sm:text-base border-2 border-slate-200/80 hover:border-slate-300 transition-all duration-200"
               >
                 <span>Montessori Toys</span>
-                <span className="text-xs bg-brand-mint/15 text-brand-mint font-bold px-2 py-0.5 rounded-full">
+                <span className="text-[10px] sm:text-xs bg-brand-mint/15 text-brand-mint font-bold px-2 py-0.5 rounded-full">
                   FSC Wood
                 </span>
               </button>
             </div>
 
             {/* Quick age filter shortcut chips */}
-            <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-2">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">
+            <div className="pt-2 sm:pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider mr-0.5 sm:mr-1">
                 Fast Pick:
               </span>
               <button
                 onClick={() => onSelectAgeGroup("Baby (0-24M)")}
-                className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 hover:border-brand-coral hover:text-brand-coral transition-colors shadow-2xs"
+                className="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-white border border-slate-200 hover:border-brand-coral hover:text-brand-coral transition-colors shadow-2xs"
               >
                 👶 Baby (0-24M)
               </button>
               <button
                 onClick={() => onSelectAgeGroup("Toddler (2-4Y)")}
-                className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 hover:border-brand-yellow-hover hover:text-brand-yellow-hover transition-colors shadow-2xs"
+                className="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-white border border-slate-200 hover:border-brand-yellow-hover hover:text-brand-yellow-hover transition-colors shadow-2xs"
               >
                 🧒 Toddler (2-4Y)
               </button>
               <button
                 onClick={() => onSelectAgeGroup("Kids (5-12Y)")}
-                className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-slate-200 hover:border-brand-blue hover:text-brand-blue transition-colors shadow-2xs"
+                className="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-white border border-slate-200 hover:border-brand-blue hover:text-brand-blue transition-colors shadow-2xs"
               >
                 🎒 Kids (5-12Y)
               </button>
             </div>
 
             {/* Parent social proof rating */}
-            <div className="pt-2 flex items-center justify-center lg:justify-start gap-3 text-xs text-slate-500">
+            <div className="pt-1 sm:pt-2 flex items-center justify-center lg:justify-start gap-2 sm:gap-3 text-[11px] sm:text-xs text-slate-500">
               <div className="flex -space-x-1.5">
                 <img
-                  className="inline-block h-7 w-7 rounded-full ring-2 ring-white object-cover"
+                  className="inline-block h-6 w-6 sm:h-7 sm:w-7 rounded-full ring-2 ring-white object-cover"
                   src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80"
                   alt="Customer"
                 />
                 <img
-                  className="inline-block h-7 w-7 rounded-full ring-2 ring-white object-cover"
+                  className="inline-block h-6 w-6 sm:h-7 sm:w-7 rounded-full ring-2 ring-white object-cover"
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
                   alt="Customer"
                 />
                 <img
-                  className="inline-block h-7 w-7 rounded-full ring-2 ring-white object-cover"
+                  className="inline-block h-6 w-6 sm:h-7 sm:w-7 rounded-full ring-2 ring-white object-cover"
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
                   alt="Customer"
                 />
@@ -152,23 +152,23 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="flex items-center gap-1">
                 <div className="flex text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                    <Star key={i} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-amber-400" />
                   ))}
                 </div>
                 <span className="font-semibold text-slate-700">4.9 / 5</span>
-                <span>(3,400+ Happy Families)</span>
+                <span className="hidden xs:inline">(3,400+ Happy Families)</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Dynamic Visual Showcase with Micro-interactions */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          <div className="lg:col-span-5 relative px-1 sm:px-0">
+            <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
               {/* Main Lifestyle Image Card Slideshow (2s timeline) */}
               <div
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
-                className="relative z-10 rounded-3xl overflow-hidden bg-white shadow-2xl border-4 border-white aspect-[4/5] sm:aspect-[3/4] group"
+                className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden bg-white shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white aspect-[4/5] sm:aspect-[3/4] group"
               >
                 {/* Images Layer */}
                 {HERO_SLIDES.map((slide, index) => {
@@ -193,29 +193,29 @@ export const Hero: React.FC<HeroProps> = ({
                 })}
 
                 {/* Floating On-Image Tag */}
-                <div className="absolute bottom-5 left-5 right-5 z-20 flex items-center justify-between text-white backdrop-blur-md bg-white/20 p-3 rounded-2xl border border-white/30 transition-all duration-300">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 z-20 flex items-center justify-between text-white backdrop-blur-md bg-white/20 p-2 sm:p-3 rounded-xl sm:rounded-2xl border border-white/30 transition-all duration-300">
                   <div className="min-w-0 pr-2">
-                    <p className="text-[10px] uppercase tracking-wider text-slate-100 font-bold truncate">
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-100 font-bold truncate">
                       {HERO_SLIDES[currentSlide].tag}
                     </p>
-                    <p className="font-heading font-bold text-sm text-white truncate">
+                    <p className="font-heading font-bold text-xs sm:text-sm text-white truncate">
                       {HERO_SLIDES[currentSlide].title}
                     </p>
                   </div>
-                  <span className="font-bold text-brand-yellow text-base flex-shrink-0">
+                  <span className="font-bold text-brand-yellow text-sm sm:text-base flex-shrink-0">
                     {HERO_SLIDES[currentSlide].price}
                   </span>
                 </div>
 
                 {/* Slideshow Progress / Pagination Dots */}
-                <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 bg-black/35 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-1 sm:gap-1.5 bg-black/35 backdrop-blur-md px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full border border-white/20">
                   {HERO_SLIDES.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
                         index === currentSlide
-                          ? "w-6 bg-brand-yellow shadow-xs"
+                          ? "w-5 sm:w-6 bg-brand-yellow shadow-xs"
                           : "w-1.5 bg-white/60 hover:bg-white"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
@@ -224,8 +224,8 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              {/* Floating Badge 1 (Top Right): Machine Washable guarantee */}
-              <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-slate-100 flex items-center gap-3 animate-float">
+              {/* Desktop Floating Badge 1 (Top Right) */}
+              <div className="hidden sm:flex sm:absolute sm:-top-6 sm:-right-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-slate-100 items-center gap-3 animate-float">
                 <div className="w-10 h-10 rounded-xl bg-brand-mint/20 text-brand-mint flex items-center justify-center font-bold">
                   🌱
                 </div>
@@ -235,14 +235,37 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              {/* Floating Badge 2 (Bottom Left): Non-toxic & Safe */}
-              <div className="absolute -bottom-5 -left-4 sm:-bottom-6 sm:-left-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-slate-100 flex items-center gap-3">
+              {/* Desktop Floating Badge 2 (Bottom Left) */}
+              <div className="hidden sm:flex sm:absolute sm:-bottom-6 sm:-left-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-slate-100 items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-brand-yellow/20 text-brand-yellow-hover flex items-center justify-center font-bold">
                   ✨
                 </div>
                 <div>
                   <p className="text-[11px] uppercase font-bold text-slate-400">Baby Safe</p>
                   <p className="text-xs font-bold text-slate-800">Zero Toxic Chemicals</p>
+                </div>
+              </div>
+
+              {/* Mobile Badges Row: Clean, compact below image */}
+              <div className="flex sm:hidden items-center justify-center gap-2 mt-3">
+                <div className="flex-1 bg-white/95 backdrop-blur-md rounded-xl p-2 shadow-xs border border-slate-100 flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-brand-mint/20 text-brand-mint flex items-center justify-center font-bold text-xs shrink-0">
+                    🌱
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[9px] uppercase font-bold text-slate-400 leading-none">Quality</p>
+                    <p className="text-[10px] font-bold text-slate-800 truncate mt-0.5">100% GOTS Cotton</p>
+                  </div>
+                </div>
+
+                <div className="flex-1 bg-white/95 backdrop-blur-md rounded-xl p-2 shadow-xs border border-slate-100 flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-brand-yellow/20 text-brand-yellow-hover flex items-center justify-center font-bold text-xs shrink-0">
+                    ✨
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[9px] uppercase font-bold text-slate-400 leading-none">Safety</p>
+                    <p className="text-[10px] font-bold text-slate-800 truncate mt-0.5">Non-Toxic Dyes</p>
+                  </div>
                 </div>
               </div>
             </div>
